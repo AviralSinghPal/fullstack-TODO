@@ -48,14 +48,14 @@ export const TodoList = () => {
 
 
     return <div> 
-       <section className="text-gray-600 body-font">
-    <div className="container px-5 py-24 mx-auto">
+       {/* <section className="text-gray-600 body-font">
+    <div className="container px-5 py-24 mx-auto"> */}
       <div className="flex flex-col text-center w-full mb-8">
         <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
           All Todos
         </h1>
       </div>
-      <div className="lg:w-2/3 w-full mx-auto overflow-auto">
+      {/* <div className="lg:w-2/3 w-full mx-auto overflow-auto">
         <table className="table-auto w-full text-left whitespace-no-wrap">
           <thead>
             <tr>
@@ -95,8 +95,43 @@ export const TodoList = () => {
             
           </tbody>
         </table>
+      
+      </div> */}
+
+      <section className="text-gray-600 body-font">
+  <div className="container px-5 py-24 mx-auto">
+    <div className="flex flex-row flex-wrap -m-4">
+      
+    {
+todoData && todoData.map((todo)=>( 
+     <div className="p-4 lg:w-1/3">
+        <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+         
+          <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">{todo.title}</h1>
+          <p className="leading-relaxed mb-3">Tasks</p>
+          <div className="flex justify-around	">
+          <button className="hover:text-green-500 bg-yellow-300 border border-slate-500 border-solid px-8 py-2 rounded"
+                onClick={()=>handleEdit(todo)}
+                >Edit</button>
+          <button className="hover:text-red-500 bg-red-300 border border-slate-500 border-solid px-8 py-2 rounded"
+                onClick={()=>handleDelete(todo._id)}
+                >Delete</button>
+          </div>
+          <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
+           
+          </div>
+        </div>
       </div>
+      
+      ))}
     </div>
-  </section> 
-   </div>
+    
+  
+  </div>
+</section>
+
+
+    </div>
+  // </section> 
+  //  </div>
 }
