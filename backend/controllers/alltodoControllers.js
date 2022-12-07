@@ -151,6 +151,16 @@ exports.createTaskTodoController=async(req,res)=>{
   todo.tasks.push(task);
   // const todoUpdated = await Todo.findByIdAndUpdate(todoObj, todo)
   await todo.save()
-  res.json(todo);
+  res.json({
+    success:true,
+    todo
+  });
  
+}
+exports.getTaskController= async(req,res)=>{
+  const todoid =  req.params.id
+
+  const alltodos=await Todo.findById(todoid)
+
+  res.json(alltodos.tasks)
 }
