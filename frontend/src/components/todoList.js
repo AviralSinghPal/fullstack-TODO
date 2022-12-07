@@ -3,7 +3,8 @@ import axios from "axios"
 
 export const TodoList = () => {
     const [todoData, setTodoData] = useState(null);
-
+    // const [todoTaskData, setTodoTaskData] = useState(null);
+    
     const fetchTodoData = async() =>{
       const resp = await axios.get("/getTodos");
       console.log(resp);
@@ -13,12 +14,21 @@ export const TodoList = () => {
       // }
     };
 
+    
+// const fetchTask = async()=>{ 
+//   const resp = axios.get("/getTask/:id");
+//   console.log(resp);
+// }
 // it is a good practice to keep async await out of useEffect.(that's why we have explicitly written fetchUserData )
 
 
     useEffect(()=>{
       fetchTodoData();
     }, [todoData])
+
+    // useEffect(()=>{
+    //   fetchTask();
+    // }, [todoTaskData])
 
     // handling edit ops
     const handleEdit = async (todo) =>{
@@ -45,13 +55,13 @@ export const TodoList = () => {
       const resp = await axios.delete(`/deleteTodo/${todoId}`);
       console.log(resp);
     }
-
+    // const items ={{todo.tasks}.map((n) =>'<li>'+ n +'</li>')}
 
     return <div> 
        {/* <section className="text-gray-600 body-font">
     <div className="container px-5 py-24 mx-auto"> */}
       <div className="flex flex-col text-center w-full mb-8">
-        <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
+        <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-100">
           All Todos
         </h1>
       </div>
@@ -97,6 +107,7 @@ export const TodoList = () => {
         </table>
       
       </div> */}
+      
 
       <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto">
@@ -108,14 +119,27 @@ todoData && todoData.map((todo)=>(
         <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
          
           <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">{todo.title}</h1>
-          <p className="leading-relaxed mb-3">Tasks</p>
+          <p className="leading-relaxed mb-3 text-xl font-medium">Tasks 
+          <i className="fa-solid fa-pen-to-square text-xl px-5"></i>
+          <i className="fa-sharp fa-solid fa-trash"></i>
+          </p>
+          {/* {
+          todo.map((task)=>
+          {
+            <ul>{task.tasks}</ul>
+          }
+          )
+          } */}
+          {/* {var t = {todo.tasks}} */}
+          <h1>{todo.tasks}</h1>
+          
           <div className="flex justify-around	">
           <button className="hover:text-green-500 bg-yellow-300 border border-slate-500 border-solid px-8 py-2 rounded"
                 onClick={()=>handleEdit(todo)}
-                >Edit</button>
+                >Edit Title</button>
           <button className="hover:text-red-500 bg-red-300 border border-slate-500 border-solid px-8 py-2 rounded"
                 onClick={()=>handleDelete(todo._id)}
-                >Delete</button>
+                >Delete Todo</button>
           </div>
           <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
            
