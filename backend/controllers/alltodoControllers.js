@@ -86,7 +86,7 @@ exports.createTodoController = async(req,res)=>{
       const { title } = req.body;
       // To check all the details
       if (!title) {
-        throw new Error("title is Required");
+        throw new Error("Title is Required");
       }
       
       // Inserting into the Database
@@ -104,7 +104,7 @@ exports.createTodoController = async(req,res)=>{
 exports.deleteTodoController = async(req,res)=>{
 
   const todoID = req.params.id
-  const deleteTodo = await Todo.findByIdAndDelete(todoID)
+  const deleteTodo = await Todo.findByIdAndDelete(todoID);
   
   res.status(200).json(deleteTodo)
 }
